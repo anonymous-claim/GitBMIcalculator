@@ -120,7 +120,7 @@ pipeline {
             }
         }
 
-        stages {
+        
         stage('Deploy to prod') {
             input {
                 message "Should we continue?"
@@ -130,7 +130,7 @@ pipeline {
                 echo "Deploying."
             }
         }
-    }
+    
         stage('Deploy') {
             steps {
                 echo 'Deploy ' + GLOBAL_ENVIRONMENT
