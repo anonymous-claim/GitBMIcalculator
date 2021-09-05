@@ -120,21 +120,6 @@ pipeline {
             }
         }
 
-        stage('Archive artifacts') {
-            steps {
-                echo 'Archive artifacts'
-
-                script {
-                    if (GLOBAL_ENVIRONMENT == 'NO_DEPLOYMENT') {
-                        echo 'This is not develop nor master branch and should not be archived'
-                    } else {
-                        // Archive all build artifacts
-                        archiveArtifacts artifacts: 'build/*'
-                    }
-                }
-            }
-        }
-
         stage('Deploy') {
             steps {
                 echo 'Deploy ' + GLOBAL_ENVIRONMENT
