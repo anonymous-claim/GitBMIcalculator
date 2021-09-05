@@ -23,10 +23,6 @@ pipeline {
         ENVIRONMENT_STAGING = 'staging'
     }
 
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
-
     options {
         // Keep maximum 10 archived artifacts
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
@@ -120,17 +116,6 @@ pipeline {
             }
         }
 
-        
-        stage('Deploy to prod') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
-            steps {
-                echo "Deploying."
-            }
-        }
-    
         stage('Deploy') {
             steps {
                 echo 'Deploy ' + GLOBAL_ENVIRONMENT
