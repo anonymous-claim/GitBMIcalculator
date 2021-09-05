@@ -120,17 +120,17 @@ pipeline {
             }
         }
 
-        stage('Deploy - Staging') {
-    steps {
-        sh './deploy staging'
-        sh './run-smoke-tests'
+        stages {
+        stage('Deploy to prod') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
+            steps {
+                echo "Deploying."
+            }
+        }
     }
-}
-stage('Deploy - Production') {
-    steps {
-        sh './deploy production'
-    }
-}
         stage('Deploy') {
             steps {
                 echo 'Deploy ' + GLOBAL_ENVIRONMENT
