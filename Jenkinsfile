@@ -34,36 +34,22 @@ pipeline {
             }
         }
 
-        stage(' Unit Testing') {
+        stage('Testing Stage') {
             steps {
                 sh """
-                echo "Running Unit Tests"
+                echo "Running Tests"
                 """
             }
         }
 
-        stage('Code Analysis') {
+        stage('Deploy Stage') {
             steps {
-                sh """
-                echo "Running Code Analysis"
+                
+                    sh """
+                    echo "Deploying"
                 """
+                
             }
         }
-
-        stage('Build Deploy Code') {
-            when {
-                branch 'develop'
-            }
-            steps {
-                sh """
-                echo "Building Artifact"
-                """
-
-                sh """
-                echo "Deploying Code"
-                """
-            }
-        }
-
     }   
 }
