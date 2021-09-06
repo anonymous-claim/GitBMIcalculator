@@ -28,42 +28,30 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
+                    branches: [[name: '*/feature']], 
                     userRemoteConfigs: [[url: 'https://github.com/anonymous-claim/GitBMIcalculator.git']]
                 ])
             }
         }
 
-        stage(' Unit Testing') {
+        stage('Testing Stage') {
             steps {
                 sh """
-                echo "Running Unit Tests"
+                echo "Running Tests"
                 """
             }
         }
 
-        stage('Code Analysis') {
+        stage('Deploy Stage') {
             steps {
-                sh """
-                echo "Running Code Analysis"
+                checkout([
+                   
+                    branches: [[name: '*/feature']], 
+                    sh """
+                    echo "Deploying + branches"
                 """
+                    ])
             }
         }
-
-        stage('Build Deploy Code') {
-            when {
-                branch 'develop'
-            }
-            steps {
-                sh """
-                echo "Building Artifact"
-                """
-
-                sh """
-                echo "Deploying Code"
-                """
-            }
-        }
-
     }   
 }
