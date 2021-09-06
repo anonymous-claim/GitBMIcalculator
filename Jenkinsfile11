@@ -50,8 +50,8 @@ pipeline {
                 echo 'Setup environment'
                 sh 'git name-rev --name-only HEAD > GIT_BRANCH'
                 sh 'cat GIT_BRANCH'
-                git_branch = readFile('GIT_BRANCH').trim()
-                env.BRANCH_NAME = git_branch
+                env.git_branch = readFile('GIT_BRANCH').trim()
+                env.BRANCH_NAME = env.git_branch
                 
                 script {
                     // Determine whether this is a test or a staging / production build                    
