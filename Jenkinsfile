@@ -54,10 +54,10 @@ pipeline {
                 script {
                     // Determine whether this is a test or a staging / production build                    
                     switch (ENV_NAME) {
-                        case 'newbranch':
+                        case 'master':
                             GLOBAL_ENVIRONMENT = 'Production'
                             break
-                        case 'master':
+                        case 'newbranch':
                             GLOBAL_ENVIRONMENT = 'staging'
                             break
                         default: 
