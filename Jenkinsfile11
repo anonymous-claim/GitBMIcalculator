@@ -21,6 +21,7 @@ pipeline {
 
         // Need the staging properties anyway to deploy to staging and production simultaneously when doing a prod release
         ENVIRONMENT_STAGING = 'staging'
+        ENV_NAME = "${env.BRANCH_NAME}"
         
     }
 
@@ -48,14 +49,11 @@ pipeline {
         stage('Setup environment') {
             steps {
                 echo 'Setup environment'
-                sh 'git name-rev --name-only HEAD > GIT_BRANCH'
-                sh 'cat GIT_BRANCH'
-                env.git_branch = readFile('GIT_BRANCH').trim()
-                env.BRANCH_NAME = env.git_branch
+                
                 
                 script {
                     // Determine whether this is a test or a staging / production build                    
-                    switch (env.BRANCH_NAME) {
+                    switch (ENV_NAME) {
                         case 'newbranch':
                             GLOBAL_ENVIRONMENT = 'test'
                             break
