@@ -50,7 +50,7 @@ pipeline {
             steps {
                 echo 'Setup environment'
                 
-                
+                sh "echo ${ENV_NAME}"
                 script {
                     // Determine whether this is a test or a staging / production build                    
                     switch (ENV_NAME) {
