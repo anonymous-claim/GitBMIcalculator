@@ -50,7 +50,7 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/anonymous-claim/GitBMIcalculator.git']]
                     ])
                     sh """
-                    echo "Deploying + branches"
+                    echo "Deploying"
                 """
                 
             }
