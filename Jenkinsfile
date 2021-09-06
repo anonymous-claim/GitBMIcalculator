@@ -45,12 +45,14 @@ pipeline {
         stage('Deploy Stage') {
             steps {
                 checkout([
-                   
-                    branches: [[name: '*/feature']], 
+                   $class: 'GitSCM', 
+                    branches: [[name: '*/feature']],
+                    userRemoteConfigs: [[url: 'https://github.com/anonymous-claim/GitBMIcalculator.git']]
+                    ])
                     sh """
                     echo "Deploying + branches"
                 """
-                    ])
+                
             }
         }
     }   
